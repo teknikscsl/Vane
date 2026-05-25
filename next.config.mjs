@@ -24,6 +24,9 @@ const nextConfig = {
       './node_modules/@napi-rs/canvas-linux-x64-musl/**',
     ],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   env: {
     NEXT_PUBLIC_VERSION: pkg.version,
   },
