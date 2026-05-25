@@ -6,6 +6,7 @@ import LMStudioLLM from './lmstudioLLM';
 import BaseLLM from '../../base/llm';
 import BaseEmbedding from '../../base/embedding';
 import LMStudioEmbedding from './lmstudioEmbedding';
+import { validateProviderBaseURL } from '@/lib/utils/urlValidation';
 
 interface LMStudioConfig {
   baseURL: string;
@@ -124,7 +125,7 @@ class LMStudioProvider extends BaseModelProvider<LMStudioConfig> {
       throw new Error('Invalid config provided. Base URL must be provided');
 
     return {
-      baseURL: String(raw.baseURL),
+      baseURL: validateProviderBaseURL(String(raw.baseURL)),
     };
   }
 

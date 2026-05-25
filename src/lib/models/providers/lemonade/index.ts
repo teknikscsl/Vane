@@ -6,6 +6,7 @@ import BaseLLM from '../../base/llm';
 import LemonadeLLM from './lemonadeLLM';
 import BaseEmbedding from '../../base/embedding';
 import LemonadeEmbedding from './lemonadeEmbedding';
+import { validateProviderBaseURL } from '@/lib/utils/urlValidation';
 
 interface LemonadeConfig {
   baseURL: string;
@@ -133,7 +134,7 @@ class LemonadeProvider extends BaseModelProvider<LemonadeConfig> {
       throw new Error('Invalid config provided. Base URL must be provided');
 
     return {
-      baseURL: String(raw.baseURL),
+      baseURL: validateProviderBaseURL(String(raw.baseURL)),
       apiKey: raw.apiKey ? String(raw.apiKey) : undefined,
     };
   }

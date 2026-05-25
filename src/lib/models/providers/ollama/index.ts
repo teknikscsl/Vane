@@ -6,6 +6,7 @@ import BaseLLM from '../../base/llm';
 import BaseEmbedding from '../../base/embedding';
 import OllamaLLM from './ollamaLLM';
 import OllamaEmbedding from './ollamaEmbedding';
+import { validateProviderBaseURL } from '@/lib/utils/urlValidation';
 
 interface OllamaConfig {
   baseURL: string;
@@ -117,7 +118,7 @@ class OllamaProvider extends BaseModelProvider<OllamaConfig> {
       throw new Error('Invalid config provided. Base URL must be provided');
 
     return {
-      baseURL: String(raw.baseURL),
+      baseURL: validateProviderBaseURL(String(raw.baseURL)),
     };
   }
 

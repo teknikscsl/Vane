@@ -6,6 +6,7 @@ import BaseEmbedding from '../../base/embedding';
 import BaseModelProvider from '../../base/provider';
 import BaseLLM from '../../base/llm';
 import OpenAILLM from './openaiLLM';
+import { validateProviderBaseURL } from '@/lib/utils/urlValidation';
 
 interface OpenAIConfig {
   apiKey: string;
@@ -207,7 +208,7 @@ class OpenAIProvider extends BaseModelProvider<OpenAIConfig> {
 
     return {
       apiKey: String(raw.apiKey),
-      baseURL: String(raw.baseURL),
+      baseURL: validateProviderBaseURL(String(raw.baseURL)),
     };
   }
 
